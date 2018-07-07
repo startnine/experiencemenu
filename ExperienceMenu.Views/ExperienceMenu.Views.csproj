@@ -7,8 +7,8 @@
     <ProjectGuid>{CDD51319-2904-48EC-9BA9-1004F230068B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DoubleDeckerBar.Views</RootNamespace>
-    <AssemblyName>PatrickStart.Views</AssemblyName>
+    <RootNamespace>ExperienceMenu.Views</RootNamespace>
+    <AssemblyName>ExperienceMenu.Views</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>

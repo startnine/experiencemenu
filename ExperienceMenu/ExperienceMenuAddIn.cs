@@ -8,7 +8,7 @@ using System.Windows;
 
 namespace ExperienceMenu
 {
-    [AddIn("Patrick Start", Description = "Start menu whose name is Patrick", Version = "1.0.0.0", Publisher = "Start9")]
+    [AddIn("eXPerience Menu", Description = "eXPerience the nostalgia!", Version = "1.0.0.0", Publisher = "Start9")]
     public class ExperienceMenuAddIn : IModule
     {
         public static ExperienceMenuAddIn Instance { get; private set; }
