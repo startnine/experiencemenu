@@ -1,0 +1,71 @@
+﻿<Window x:Class="ExperienceMenu.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:apictrl="clr-namespace:Start9.Api.Controls;assembly=Start9.Api"
+        xmlns:apiobj="clr-namespace:Start9.Api.Objects;assembly=Start9.Api"
+        xmlns:local="clr-namespace:ExperienceMenu"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}"
+        mc:Ignorable="d"
+        Title="MainWindow" WindowStyle="None" ResizeMode="NoResize" Background="Transparent" AllowsTransparency="True" ShowInTaskbar="False">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/ExperienceMenu;component/DefaultSkin.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid x:Name="RootGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition>
+                <RowDefinition.Height>
+                    <Binding Path="BorderThickness" ConverterParameter="Top">
+                        <Binding.Converter>
+                            <apiobj:ThicknessToDoubleConverter/>
+                        </Binding.Converter>
+                    </Binding>
+                </RowDefinition.Height>
+            </RowDefinition>
+            <RowDefinition/>
+            <RowDefinition>
+                <RowDefinition.Height>
+                    <Binding Path="BorderThickness" ConverterParameter="Bottom">
+                        <Binding.Converter>
+                            <apiobj:ThicknessToDoubleConverter/>
+                        </Binding.Converter>
+                    </Binding>
+                </RowDefinition.Height>
+            </RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Margin="{Binding ListPadding, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:MainWindow}}}" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <DockPanel LastChildFill="True">
+                <ToggleButton x:Name="AllProgramsButton" Style="{DynamicResource AllAppsButtonStyle}" DockPanel.Dock="Bottom" MouseEnter="AllProgramsButton_MouseEnter" Click="AllProgramsButton_Click">
+                    <ToggleButton.ContextMenu>
+                        <ContextMenu x:Name="AllProgramsContextMenu" Style="{StaticResource {x:Type ContextMenu}}"/>
+                    </ToggleButton.ContextMenu>
+                    All Apps
+                </ToggleButton>
+                <ListView x:Name="PinnedListView" Style="{DynamicResource PinnedListViewStyle}" ItemsSource="{Binding PinnedItems}" ItemTemplate="{DynamicResource PinnedItemDataTemplate}" SelectionMode="Single" SelectionChanged="ListView_SelectionChanged"/>
+            </DockPanel>
+            <ListView x:Name="PlacesListView" Style="{DynamicResource PlacesListViewStyle}" Grid.Column="1" ItemsSource="{Binding Places}" ItemTemplate="{DynamicResource PinnedItemDataTemplate}" SelectionMode="Single" SelectionChanged="ListView_SelectionChanged"/>
+        </Grid>
+        <DockPanel Grid.Row="0" LastChildFill="True">
+            <Button Style="{DynamicResource FavStyle}" DockPanel.Dock="Right" Click="Button_Click"/>
+            <Button Style="{DynamicResource UserImageFrameStyle}" DockPanel.Dock="Left"/>
+            <TextBlock x:Name="NameTextBlock" Style="{DynamicResource UsernameTextBlockStyle}">Patrick Start</TextBlock>
+        </DockPanel>
+        <DockPanel Grid.Row="2">
+            <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+                <Button Style="{DynamicResource LogOffButtonStyle}"/>
+                <Button Style="{DynamicResource ShutDownButtonStyle}"/>
+            </StackPanel>
+            <TextBox x:Name="SearchBox" Style="{DynamicResource SearchBoxStyle}" GotFocus="SearchBox_GotFocus" LostFocus="SearchBox_LostFocus"/>
+        </DockPanel>
+    </Grid>
+</Window>
